@@ -1,33 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import * as React from 'react'
 import './App.css'
 
+type Person = {
+  id: number
+  name: string
+}
+
+const getPeople = (): Array<Person> => {
+  return [
+    { id: 1, name: 'Alan Turing' },
+    { id: 2, name: 'John von Neumman' },
+    { id: 3, name: 'Edger W. Dijkstra' },
+  ]
+}
+
+const getNumberOfDaysInMonth = (year: number, month: number) => {
+  const date = new Date(year, month, 0)
+  return date.getDate()
+}
+
+const getDaysInMonth = () => {
+  const today = new Date()
+  const numberOfDays = getNumberOfDaysInMonth(
+    today.getFullYear(),
+    today.getMonth() + 1
+  )
+  const arr = new Array(numberOfDays)
+  const filled = arr.fill(0).map((_, index) => index + 1)
+  return filled
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [people] = React.useState<Array<Person>>(getPeople)
+  const [days] = React.useState<Array<number>>(getDaysInMonth)
 
   return (
     <>
-      <div>
-        <a href='https://vitejs.dev' target='_blank'>
-          <img src={viteLogo} className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://react.dev' target='_blank'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
+      <h1>Calendar example</h1>
+      <div className='calendar'>
+        <label className='legend'>Names/Day</label>
+        {days.map((day) => (
+          <label className='day' key={day}>
+            {day}
+          </label>
+        ))}
+        {people.map((person) => {
+          return (
+            <>
+              <div className='name'>
+                <label>{person.name}</label>
+              </div>
+              {days.map((day) => (
+                <label className='day__user' key={day}>
+                  {day}
+                </label>
+              ))}
+            </>
+          )
+        })}
       </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }

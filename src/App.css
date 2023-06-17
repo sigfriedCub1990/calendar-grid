@@ -1,42 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.calendar {
+  display: grid;
+  grid-template: 1fr repeat(3, 30px) / 4fr repeat(30, 30px);
+  grid-gap: 2px 2px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.legend {
+  font-weight: bold;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.day {
+  color: hsl(30deg 94.09% 37.07%);
 }
 
-.card {
-  padding: 2em;
+.day__user {
+  background-color: hsl(0 100% 0%);
+  color: hsl(0 100% 0%);
 }
 
-.read-the-docs {
-  color: #888;
+.name {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+  text-align: left;
+}
+
+.user__days {
+  display: inline;
 }
