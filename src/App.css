@@ -12,10 +12,18 @@
   display: grid;
   grid-template: 1fr repeat(3, 30px) / 4fr repeat(30, 30px);
   grid-gap: 2px 2px;
+  /*
+   * Since final height is unknown
+   * we can define how the so called "implicit" columns/rows
+   * will look like.
+   */
+  grid-auto-columns: 30px;
+  grid-auto-rows: 30px;
 }
 
 .legend {
   font-weight: bold;
+  text-align: left;
 }
 
 .day {
@@ -25,6 +33,11 @@
 .day__user {
   background-color: hsl(0 100% 0%);
   color: hsl(0 100% 0%);
+  cursor: pointer;
+}
+
+.day__user:hover {
+  background-color: hsl(55.81deg 87.02% 45.18%);
 }
 
 .name {
@@ -32,8 +45,4 @@
   align-items: center;
   margin-right: 0.5rem;
   text-align: left;
-}
-
-.user__days {
-  display: inline;
 }

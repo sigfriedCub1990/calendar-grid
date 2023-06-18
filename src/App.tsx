@@ -6,11 +6,17 @@ type Person = {
   name: string
 }
 
+type DayProps = {
+  day: number
+}
+
 const getPeople = (): Array<Person> => {
   return [
     { id: 1, name: 'Alan Turing' },
     { id: 2, name: 'John von Neumman' },
     { id: 3, name: 'Edger W. Dijkstra' },
+    { id: 4, name: 'Allan Parsons' },
+    { id: 5, name: 'Pat Metteny' },
   ]
 }
 
@@ -28,6 +34,10 @@ const getDaysInMonth = () => {
   const arr = new Array(numberOfDays)
   const filled = arr.fill(0).map((_, index) => index + 1)
   return filled
+}
+
+const Day = ({ day }: DayProps) => {
+  return <label key={day} className='day__user'></label>
 }
 
 function App() {
@@ -51,9 +61,7 @@ function App() {
                 <label>{person.name}</label>
               </div>
               {days.map((day) => (
-                <label className='day__user' key={day}>
-                  {day}
-                </label>
+                <Day key={day} day={day} />
               ))}
             </>
           )
